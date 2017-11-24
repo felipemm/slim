@@ -1,0 +1,12 @@
+{% extends 'layout.twig.html' %}
+{% block content %}
+<section class="section">
+  <ul class="list">
+    {% for book in books %}
+    <li>
+        <strong>{{book.id}} - {{book.book_name}} - {{book.status}}</strong>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

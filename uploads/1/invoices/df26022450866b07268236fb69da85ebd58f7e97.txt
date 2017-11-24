@@ -1,0 +1,8 @@
+CORRETORA:rico
+NOTA:11030
+DATA:20/01/2014
+DESPESAS:1,53D
+COMPRAS:
+    1-BOVESPA|  C| FRACIONARIO |   | AMBEV S/A ON  EDJ      |  14 |      16,75 |   234,50 |D
+    1-BOVESPA|  C| FRACIONARIO |   | ITAUUNIBANCO PN N1     |   1 |      29,90 |    29,90D|
+    1-BOVESPA|  C| FRACIONARIO |   | VALE PNA  N1           |   1 |      29,28 |    29,28D|

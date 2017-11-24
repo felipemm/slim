@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Slim Framework + Twig Template + Illuminate Database/Validation</title>
+  <link rel="stylesheet" href="{{public}}/css/main.css">
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1><a href="{{baseUrl}}">Slim Framework + Twig Template + Illuminate Database/Validation</a></h1>
+    </header>
+    {% if flash['message'] %}
+      <div class="alert">
+        <p>{{flash['message']}}</p>
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+    <footer class="footer">
+      <a href="http://slimframework.com/">Slim Framework</a> +
+      <a href="http://twig.sensiolabs.org">Twig Template</a> +
+      <a href="https://github.com/illuminate/database">Illuminate Database</a> +
+      <a href="https://github.com/illuminate/validation">Illuminate Validation</a> ;)
+    </footer>
+  </div>
+  <script src="{{public}}/js/app.js"></script>
+</body>
+</html>
