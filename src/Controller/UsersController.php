@@ -95,6 +95,8 @@ class UsersController extends BaseController
     
     public function genKeys($request, $response, $args){
         $params = (object) $request->getParams();
+        //print_r($request->getAttribute('user_id'));
+        
         $crypto = new CryptoManager();
         $keys = $crypto->generateUserKeys($params->password);
         return json_encode($keys);

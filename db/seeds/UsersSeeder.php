@@ -16,7 +16,9 @@ class UsersSeeder extends AbstractSeed
     public function run()
     {
         $users = $this->table('users');
-        $users->truncate();
+	$this->execute('SET foreign_key_checks=0');   
+	$users->truncate();
+        $this->execute('SET foreign_key_checks=1');        
 
         $defaultUsers = [
             [

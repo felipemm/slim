@@ -3,6 +3,7 @@
 namespace App\Middleware;
 use Firebase\JWT\JWT;
 use \App\Model\User;
+use \App\Model\Session;
 
 class TokenValidate
 {
@@ -21,6 +22,8 @@ class TokenValidate
         $requestUri = strtolower(trim(str_replace("/","",$resourceUri)));
         $authUri = strtolower(trim(str_replace("/","",$this->container->get('settings')['authRoute'])));
         
+        //print_r($requestUri);
+        //print_r($authUri);
         
         if(strpos($requestUri, $authUri) === false && $requestUri != ""){
             $result = $this->validate($request);
@@ -40,6 +43,7 @@ class TokenValidate
         
         // Allowed, continue with the execution
         $response = $next($request->withAttribute("user_id",$this->getUserId($request)), $response);
+        // $response = $next($request, $response);
         return $response;
     }
     
@@ -50,6 +54,8 @@ class TokenValidate
                 
             $app = $this->container["secretkey"];
             $decoded = JWT::decode($xToken, $this->container["secretkey"], array('HS256'));
+            
+            echo $tokenUser->user;
             
             $tokenUser = $decoded[0];
             $user = User::where("user", $tokenUser->user)->first();
@@ -78,9 +84,11 @@ class TokenValidate
                 //print_r($body);
                 
                 if ($request->hasHeader('X-Token-Hash')){
+                    $session = Session::where("user_id", $user->id)->orderBy('created_at', 'desc')->first();
+                    //print_r($session);
                     $xTokenHash = $request->getHeader('X-Token-Hash')[0];
                     $time = gmdate('ymdHi');
-                    $messageHash = hash_hmac('SHA512', $body, $user->session_id . $time);
+                    $messageHash = hash_hmac('SHA512', $body, $session->session_id . $time);
                     
                     // echo $user->session_id;
                     // echo "\n";

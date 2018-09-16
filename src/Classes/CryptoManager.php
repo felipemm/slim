@@ -33,6 +33,7 @@ class CryptoManager {
         $ciphertext_raw = substr($c, $this->SYMMETRIC_KEY_IV_LENGTH + $this->IV_LENGTH);
         $original_plaintext = openssl_decrypt($ciphertext_raw, $this->SYMMETRIC_KEY_CIPHER, $key, OPENSSL_RAW_DATA, $iv);
         $calcmac = hash_hmac($this->HMAC_HASH_CIPHER, $ciphertext_raw, $key, true);
+        //print_r($hmac);
         if (hash_equals($hmac, $calcmac)){//PHP 5.6+ timing attack safe comparison
             return $original_plaintext;
         }

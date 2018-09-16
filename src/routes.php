@@ -24,7 +24,7 @@ $app->delete('/books/{id}', '\App\Controller\BooksController:remove');
 
 $app->post('/invoice/upload',    '\App\Controller\InvoiceController:uploadFile');
 
-// $app->get('/auth','\App\Controller\UsersController:authenticate');
+//$app->get('/auth2','\App\Controller\UsersController:authenticate');
 $app->get('/auth','\App\Controller\SessionsController:authenticate');
 $app->get('/logout/{username}','\App\Controller\UsersController:killSession');
 

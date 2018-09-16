@@ -5,8 +5,8 @@ ini_set('display_errors', 1);
 session_start();
 
 set_time_limit(60*5);
-// header("Content-Type: text/html");
-header("Content-Type: text/plain");
+header("Content-Type: text/html");
+//header("Content-Type: text/plain");
 
 $verbose = fopen('php://temp', 'w+');
 
@@ -38,6 +38,9 @@ $auth_data = json_decode($result, true);
 $token = $auth_data['auth-jwt'];
 $session_id = $auth_data['session_id'];
 $authorization = "X-Token:".$token;
+
+
+
 
 
 
